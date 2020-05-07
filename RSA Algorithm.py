@@ -56,7 +56,7 @@ def getD( phi, e ):
 			
 			return d
 
-def encrip( e, n, mensaje ):
+def encrip( e, n, letra ):
 	#Transformación a binario
 	e = bin(e)[2:]
 
@@ -64,21 +64,17 @@ def encrip( e, n, mensaje ):
 
 	respuesta = 1
 	
-	for i in mensaje:
-		#Pasado de elemento del codigo a mensaje
-		aux = ord( i ) - 64
-		
-		for j in e:
+	aux = ord( letra ) - 64
+	
+	for j in e:
 			
-			if( j == '1' ):
+		if( j == "1" ):
+					
+			respuesta *= (( ( aux ** cont ) % n ) )
 			
-				respuesta *= (( ( aux ** cont ) % n ) )
-			
-			cont = cont // 2
-		
-		respuesta = respuesta % n
-		
-		print( "El código incriptado es: {}".format( respuesta ) )
+		cont = cont // 2
+	
+	return ( respuesta % n )
 
 def RSA():
 	
@@ -114,8 +110,9 @@ def RSA():
 
 	print( "Phi (n) = {}".format( phi ) )
 
-	encrip( 11, 8051, 'ABC' )
-	
+	for i in mensaje:
+		
+		print( encrip( 11, 8051, i ) )
 
 if __name__ == '__main__':
 
