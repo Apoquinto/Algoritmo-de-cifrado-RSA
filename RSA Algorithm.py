@@ -76,13 +76,14 @@ def RSA():
 	
 	d = getD( phi, e ) 
 	
-	print( "p = {}, q = {}, n = {}".format( p, q, n ) )
+	privateKey = [ d, n ]
+	
+	print( "p = {}, q = {}".format( p, q ) )
 	
 	print( "Public Key = [ e = {}, n = {} ] ".format( e, n ) )
 	
-	print( "d = {}".format( d ) )
 
-
+	print( "Public Key = [ d = {}, n = {} ] ".format( d, n ) )
 
 if __name__ == '__main__':
 
