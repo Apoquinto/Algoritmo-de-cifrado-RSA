@@ -39,7 +39,7 @@ def getE ( phi ):
 		
 		if i not in multiplos:
 			# Verificamos que el numero primo no sea un divisor de phi(n)
-			if( phi % i != 0 ):
+			if( phi % i != 0 and i > 50 ):
 				# Devolvemos el primer primo que cumpla nuestra condición
 				return i
 			
@@ -53,7 +53,7 @@ def getD( phi, e ):
 		d = ( 1 + ( i * phi ) ) / e
 		#Comprobación para ver si el número es entero
 		if ( ( 1 + ( i * phi ) ) % e == 0 ):
-		
+			
 			return d
 
 def encrip( e, n, mensaje ):
@@ -78,7 +78,7 @@ def encrip( e, n, mensaje ):
 		
 		respuesta = respuesta % n
 		
-		print( respuesta )
+		print( "El código incriptado es: {}".format( respuesta ) )
 
 def RSA():
 	
@@ -106,7 +106,15 @@ def RSA():
 	
 	mensaje = input("Inserte mensaje a encriptar: ")
 	
-	encrip( 11, 8051, 'T' )
+	print( "p = {}, q = {}".format( p , q ) )
+	
+	print( "Public Key = [ e = {}, n = {} ]".format( e, n ) )
+
+	print( "Private Key = [ d = {}, n = {} ]".format( d, n ) )
+
+	print( "Phi (n) = {}".format( phi ) )
+
+	encrip( 11, 8051, 'ABC' )
 	
 
 if __name__ == '__main__':
