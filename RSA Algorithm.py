@@ -105,7 +105,6 @@ def RSA():
 	n = p * q
 	
 	# Public Key
-	
 	phi = ( p - 1 ) * ( q - 1 )
 	
 	e = getE( phi )
@@ -113,13 +112,11 @@ def RSA():
 	publicKey = [ e, n ]
 	
 	# Private Key
-	
 	d = int ( getD( phi, e ) ) 
 	
 	privateKey = [ d, n ]
 	
 	# Encriptación
-	
 	mensaje = input("Inserte mensaje a encriptar: ")
 	
 	mensajeSecreto = []
