@@ -94,7 +94,7 @@ def desencrip( d, n, codigo ):
 			
 		cont = cont // 2
 	
-	return ( respuesta % n )
+	return ( respuesta % n ) + 63
 
 def RSA():
 	
@@ -138,14 +138,19 @@ def RSA():
 		
 		mensajeSecreto.append( encrip( e, n, i ) )
 
-	print(mensajeSecreto)
+	print( mensajeSecreto )
 
 	for i in mensajeSecreto:
 		
 		mensajeDescifrado.append( desencrip( d, n, i ) )
 
-	print(mensajeDescifrado)
+	for i in mensajeDescifrado:
+		
+		print( chr ( i ), end = "" )
+		
+	print()
 
 if __name__ == '__main__':
 
     main()
+
