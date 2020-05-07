@@ -39,7 +39,7 @@ def getE ( phi ):
 		
 		if i not in multiplos:
 			# Verificamos que el numero primo no sea un divisor de phi(n)
-			if( phi % i != 0 and i > 50 ):
+			if( phi % i != 0 ):
 				# Devolvemos el primer primo que cumpla nuestra condición
 				return i
 			
@@ -57,16 +57,36 @@ def getD( phi, e ):
 			return d
 
 def encrip( e, n, letra ):
-	#Transformación a binario
+	# Transformación de e a binario
 	e = bin(e)[2:]
-
+	# Creación de la potencia más alta del binario
 	cont = 2 ** ( len( e ) - 1 )
 
 	respuesta = 1
 	
-	aux = ord( letra ) - 64
+	aux = ord( letra ) - 63
 	
 	for j in e:
+			
+		if( j == "1" ):
+					
+			respuesta *= (( ( aux ** cont ) % n ) )
+			
+		cont = cont // 2
+	
+	return ( respuesta % n )
+
+def desencrip( d, n, codigo ):
+	# Transformación de e a binario
+	d = bin(d)[2:]
+	# Creación de la potencia más alta del binario
+	cont = 2 ** ( len( d ) - 1 )
+
+	respuesta = 1
+	
+	aux = codigo
+	
+	for j in d:
 			
 		if( j == "1" ):
 					
@@ -94,13 +114,17 @@ def RSA():
 	
 	# Private Key
 	
-	d = getD( phi, e ) 
+	d = int ( getD( phi, e ) ) 
 	
 	privateKey = [ d, n ]
 	
 	# Encriptación
 	
 	mensaje = input("Inserte mensaje a encriptar: ")
+	
+	mensajeSecreto = []
+	
+	mensajeDescifrado = []
 	
 	print( "p = {}, q = {}".format( p , q ) )
 	
@@ -112,7 +136,15 @@ def RSA():
 
 	for i in mensaje:
 		
-		print( encrip( 11, 8051, i ) )
+		mensajeSecreto.append( encrip( e, n, i ) )
+
+	print(mensajeSecreto)
+
+	for i in mensajeSecreto:
+		
+		mensajeDescifrado.append( desencrip( d, n, i ) )
+
+	print(mensajeDescifrado)
 
 if __name__ == '__main__':
 
