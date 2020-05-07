@@ -54,8 +54,6 @@ def getD( phi, e ):
 		#Comprobación para ver si el número es entero
 		if ( ( 1 + ( i * phi ) ) % e == 0 ):
 		
-			print( i )
-			
 			return d
 
 def RSA():
