@@ -56,6 +56,27 @@ def getD( phi, e ):
 		
 			return d
 
+def encrip( e, n, mensaje ):
+	#Transformación a binario
+	e = bin(e)[2:]
+	print(e)
+	cont = 0
+	respuesta = 1
+	
+	for i in mensaje:
+		#Pasado de elemento del codigo a mensaje
+		aux = ord( i )
+		
+		for j in e:
+			
+			cont += 1
+			
+			if( j == '1' ):
+			
+				respuesta *= ( ( aux ** cont ) % n )
+				
+		print( respuesta % n )
+
 def RSA():
 	
 	p = getPrime( 1000 )
@@ -78,12 +99,12 @@ def RSA():
 	
 	privateKey = [ d, n ]
 	
-	print( "p = {}, q = {}".format( p, q ) )
+	# Encriptación
 	
-	print( "Public Key = [ e = {}, n = {} ] ".format( e, n ) )
+	mensaje = input("Inserte mensaje a encriptar: ")
 	
-
-	print( "Public Key = [ d = {}, n = {} ] ".format( d, n ) )
+	encrip( e, n, mensaje )
+	
 
 if __name__ == '__main__':
 
